@@ -33,7 +33,28 @@ module.exports = {
     }
   },
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.cssSourceMap })
+    rules: [
+      {
+        test: /\.(js|vue)$/,
+        exclude: /node_modules/,
+      },
+      {
+        test: /.js$/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.css$/,
+        loaders: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=50000&name=assets/[name].[ext]'
+      }
+    ]
   },
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-eval-source-map',
