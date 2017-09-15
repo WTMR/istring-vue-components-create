@@ -1,4 +1,4 @@
-function kebabToCamel (name) {
+function kebabToCamel(name) {
   name = name.replace(/\-(\w)/g, (match, p1) => {
     return p1.toUpperCase();
   });
@@ -19,7 +19,7 @@ module.exports = {
       type: 'string',
       required: true,
       message: 'Library name for browser usage',
-      default (answers) {
+      default(answers) {
         if (answers.name) {
           return kebabToCamel(answers.name)
         } else {
@@ -71,5 +71,5 @@ module.exports = {
       return author.slice(startPosition + 1, endPosition)
     }
   },
-  completeMessage: "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev"
+  completeMessage: "To get started:\n\n  cd {{destDirName}}\n  npm install\n npm run build\n npm run dev"
 }

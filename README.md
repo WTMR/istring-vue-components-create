@@ -13,7 +13,7 @@ This package is heavily inspired by [vue-share-components](https://github.com/Ak
 
 ```
 npm i -g vue-cli
-vue init WTMR/istring-vue-components-create components-name
+vue init WTMR/istrong-vue-components-create components-name
 ```
 
 # Plugin Development
