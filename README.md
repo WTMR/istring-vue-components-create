@@ -2,28 +2,25 @@
 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
-> Share Vue components to the world!
+> Share Vue components!
 
 A very simple [vue-cli](https://github.com/vuejs/vue-cli) template to write and publish vue plugins with `.vue` components.
 
-Features:
- - Very easy to use template with webpack 2.0 pre-configured
- - Supports Import and Browser installation for your plugin with distribution-ready files
- - Supports Less, Sass/Scss and Stylus
- - Easy development with auto-compilation and publishing to npm
+This package is heavily inspired by [vue-share-components](https://github.com/Akryum/vue-share-components) projects.
+
 
 # Usage
 
 ```
 npm i -g vue-cli
-vue init Akryum/vue-share-components plugin-name
+vue init WTMR/istring-vue-components-create components-name
 ```
 
 # Plugin Development
 
 ## Installation
 
-The first time you create or clone your plugin, you need to install the default dependencies:
+The first time you create or clone your component, you need to install the default dependencies:
 
 ```
 npm install
@@ -34,26 +31,9 @@ npm install
 This will run webpack in watching mode and output the compiled files in the `dist` folder.
 
 ```
+npm run build
 npm run dev
 ```
-
-## Use it in another project
-
-While developing, you can follow the install instructions of your plugin and link it into the project that uses it.
-
-In the plugin folder:
-
-```
-npm link
-```
-
-In the other project folder:
-
-```
-npm link your-plugin-name
-```
-
-This will install it in the dependencies as a symlink, so that it gets any modifications made to the plugin.
 
 ## Publish to npm
 
@@ -70,3 +50,5 @@ This will build the plugin into the `dist` folder in production mode.
 ```
 npm run build
 ```
+
+
