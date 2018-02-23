@@ -1,5 +1,3 @@
-require('./check-versions')()
-
 var config = require('./devConfig')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.env.NODE_ENV)

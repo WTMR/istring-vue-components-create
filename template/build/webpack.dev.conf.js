@@ -3,8 +3,6 @@ var webpack = require('webpack')
 var utils = require('./utils')
 var config = require('./devConfig')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -43,7 +41,25 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            // the "scss" and "sass" values for the lang attribute to the right configs here.
+            // other preprocessors should work out of the box, no loader config like this necessary.
+            'scss': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader'
+            ],
+            'sass': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader?indentedSyntax'
+            ]
+          }
+          // other vue-loader options go here
+        }
       },
       {
         test: /\.css$/,
@@ -69,14 +85,6 @@ module.exports = {
       filename: 'index.html',
       template: './example/index.html',
       inject: true
-    }),
-    new FriendlyErrorsPlugin(),
-    new CopyWebpackPlugin([
-      // {
-      //   from: 'node_modules/istrong-fonticon/dist/fonts',
-      //   to: 'fonts',
-      //   ignore: ['.*']
-      // }
-    ])
+    })
   ]
 }

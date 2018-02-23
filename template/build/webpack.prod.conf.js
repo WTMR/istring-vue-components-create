@@ -34,7 +34,7 @@ module.exports = {
         loader: 'babel-loader',
         query:
         {
-          presets: ['es2015', 'stage-0']
+          presets: ['env', 'stage-3']
         }
       },
       {
@@ -43,7 +43,17 @@ module.exports = {
         options: {
           loaders: {
             css: ExtractTextPlugin.extract('css-loader'),
-          },
+            'scss': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader'
+            ],
+            'sass': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader?indentedSyntax'
+            ]
+          }
         },
       },
       {

@@ -1,28 +1,46 @@
-import TestApp from './components/TestApp.vue'
-
-// Install the components
+{{#if_eq cliType 'component'}}
+import VueComponent from './lib/{{ name }}.vue'
 export function install(Vue) {
-  Vue.component('testApp', TestApp)
+  Vue.component(VueComponent.name, VueComponent)
   /* -- Add more components here -- */
 }
+export default VueComponent
+{{/if_eq}}
+{{#if_eq cliType 'plugin'}}
+const VuePlugin = {
+  install: (Vue, options) => {
+    // 1. 添加全局方法或属性
+    Vue.myGlobalMethod = function () {
+      // 逻辑...
+    }
 
-// Expose the components
-export {
-  TestApp,
-  /* -- Add more components here -- */
+    // 2. 添加全局资源
+    Vue.directive('my-directive', {
+      bind (el, binding, vnode, oldVnode) {
+        // 逻辑...
+      }
+      // ...
+    })
+
+    // 3. 注入组件
+    Vue.mixin({
+      created: function () {
+        // 逻辑...
+      }
+      // ...
+    })
+
+    // 4. 添加实例方法
+    Vue.prototype.$myMethod = function (methodOptions) {
+      // 逻辑...
+    }
+  }
 }
+export default VuePlugin
+{{/if_eq}}
+{{#if_eq cliType 'jsLibary'}}
+export default function(){
 
-/* -- Plugin definition & Auto-install -- */
-/* You shouldn't have to modify the code below */
+};
+{{/if_eq}}
 
-// Plugin
-const plugin = {
-  /* eslint-disable no-undef */
-  version: VERSION,
-  install,
-}
-
-export default plugin;
-
-// Auto-install
-// Vue.use(plugin);
