@@ -54,7 +54,7 @@ module.exports = {
       message: '浏览器使用的库名称',
       default(answers) {
         if (answers.name) {
-          return kebabToCamel((answers.scope === 'common' ? 'IString' : '') + answers.name)
+          return (answers.scope === 'common' ? 'IString' : '')+ kebabToCamel(answers.name)
         } else {
           return ''
         }
@@ -94,6 +94,11 @@ module.exports = {
         "less",
         "stylus"
       ]
+    },
+    autobuild: {
+      type: 'boolean',
+      message: '自动安装依赖并运行测试',
+      default: false
     }
   },
   helpers: {
@@ -132,7 +137,7 @@ module.exports = {
       'src', 'lib', data.name + `${data.cliType === 'component' ? '.vue' : '.js'}`
     );
     let name = kebabToCamel(data.name);
-    const name = `${data.scope === 'common' ? 'IString-' + name : name}`;
+    name = `${data.scope === 'common' ? 'IString-' + name : name}`;
     const componentContent = `<template>
 <div class='`+ name + `'>
 Hello `+ name + `
@@ -172,6 +177,11 @@ methods: {
         })
       })
     }
+    if(!data.autobuild){
+      console.log('初始化完成！\n   cd '+data.destDirName +'\n  npm install\n npm run build\n npm run dev')
+      return;
+    }  
+
     console.log('开始安装依赖......')
     runCommand('npm', ['install'], { cwd: `${data.name}` })
       .then(() => {
