@@ -2,9 +2,9 @@
 
 > Share Vue components!
 
-A very simple [vue-cli](https://github.com/vuejs/vue-cli) template to write and publish vue plugins with `.vue` components.
+一个非常简单的[vue-cli]（https://github.com/vuejs/vue-cli）模板，可以用`.vue`组件编写和发布vue插件。
 
-This package is heavily inspired by [vue-share-components](https://github.com/Akryum/vue-share-components) projects.
+主要思路来源于 [vue-share-components](https://github.com/Akryum/vue-share-components)、[simple-cli](https://github.com/strongdevx/simple-cli).
 
 
 # 用法
@@ -14,6 +14,14 @@ npm i -g vue-cli
 vue init WTMR/istrong-template components-name
 ```
 components-name 为你的组件名称。
+
+# 问题解释
+## 请选择适用范围？
+①通用（以@istrong作为前缀）
+
+②项目（自行定义名字，没有前缀）
+
+选择通用，则会以@istrong作为前缀，比如你输入的组件名是：your-component，那么最终发布成npm包的名称为@istrong/your-component，这样做的好处是，**所有前缀为@strongsoft的组件被安装下来时都会放在node_modules/@istrong目录下**方便阅读
 
 # 开发
 
@@ -49,20 +57,10 @@ npm run build
 npm run dev
 ```
 
-## Publish to npm
+## 常用命令
 
-You may have to login to npm before, with `npm adduser`. The plugin will be built in production mode before getting published on npm.
-
-```
-npm publish
-```
-
-## Manual build
-
-This will build the plugin into the `dist` folder in production mode.
-
-```
-npm run build
-```
-
-
+* 安装依赖：npm install
+* 启动本地服务器：npm run dev
+* 代码规范检测：npm run lint
+* 自动修复代码规范问题：npm run fix
+* 发布成npm包：npm publish

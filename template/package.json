@@ -11,7 +11,9 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --progress --hide-modules",
+    "lint": "eslint --ext .js,.vue src",
+    "fix": "npm run lint -- --fix"
   },
   {{#unless_eq githubAccount ""}}
   "repository": {

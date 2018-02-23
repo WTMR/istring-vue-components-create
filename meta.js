@@ -38,9 +38,9 @@ module.exports = {
         "value": "common",
         "short": "通用（以@istrong/作为前缀）"
       }, {
-        "name": "自定义组件",
-        "value": "customize",
-        "short": "自定义组件"
+        "name": "项目（自行定义名字，没有前缀）",
+        "value": "project",
+        "short": "项目（自行定义名字，没有前缀）"
       }]
     },
     name: {
@@ -131,7 +131,8 @@ module.exports = {
     const file = path.join(data.destDirName,
       'src', 'lib', data.name + `${data.cliType === 'component' ? '.vue' : '.js'}`
     );
-    const name = `${data.scope === 'common' ? 'IString-' + data.name : data.name}`;
+    let name = kebabToCamel(data.name);
+    const name = `${data.scope === 'common' ? 'IString-' + name : name}`;
     const componentContent = `<template>
 <div class='`+ name + `'>
 Hello `+ name + `
@@ -164,7 +165,7 @@ methods: {
 </style>
 `
     if (data.cliType === 'component') {
-      fs.mkdir(path.join(data.destDirName,'src', 'lib'),function(err){
+      fs.mkdir(path.join(data.destDirName, 'src', 'lib'), function (err) {
         if (err) throw err
         fs.writeFile(file, componentContent, err => {
           if (err) throw err
