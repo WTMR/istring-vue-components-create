@@ -17,11 +17,11 @@ components-name 为你的组件名称。
 
 # 问题解释
 ## 请选择适用范围？
-①通用（以@istrong作为前缀）
+①通用（以@strongsoft作为前缀）
 
 ②项目（自行定义名字，没有前缀）
 
-选择通用，则会以@istrong作为前缀，比如你输入的组件名是：your-component，那么最终发布成npm包的名称为@istrong/your-component，这样做的好处是，**所有前缀为@istrong的组件被安装下来时都会放在node_modules/@istrong目录下**方便阅读
+选择通用，则会以@strongsoft作为前缀，比如你输入的组件名是：your-component，那么最终发布成npm包的名称为@strongsoft/your-component，这样做的好处是，**所有前缀为@strongsoft的组件被安装下来时都会放在node_modules/@strongsoft目录下**方便阅读
 
 # 开发
 

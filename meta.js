@@ -34,9 +34,9 @@ module.exports = {
       message: "请选择适用范围",
       default: 0,
       choices: [{
-        "name": "通用（以@istrong/作为前缀）",
+        "name": "通用（以@strongsoft/作为前缀）",
         "value": "common",
-        "short": "通用（以@istrong/作为前缀）"
+        "short": "通用（以@strongsoft/作为前缀）"
       }, {
         "name": "项目（自行定义名字，没有前缀）",
         "value": "project",
@@ -54,7 +54,7 @@ module.exports = {
       message: '浏览器使用的库名称',
       default(answers) {
         if (answers.name) {
-          return (answers.scope === 'common' ? 'IString' : '')+ kebabToCamel(answers.name)
+          return (answers.scope === 'common' ? 'IStrong' : '') + kebabToCamel(answers.name)
         } else {
           return ''
         }
@@ -177,10 +177,10 @@ methods: {
         })
       })
     }
-    if(!data.autobuild){
-      console.log('初始化完成！\n   cd '+data.destDirName +'\n  npm install\n npm run build\n npm run dev')
+    if (!data.autobuild) {
+      console.log('初始化完成！\n   cd ' + data.destDirName + '\n  npm install\n npm run build\n npm run dev')
       return;
-    }  
+    }
 
     console.log('开始安装依赖......')
     runCommand('npm', ['install'], { cwd: `${data.name}` })

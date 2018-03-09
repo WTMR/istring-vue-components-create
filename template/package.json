@@ -1,12 +1,14 @@
 {
-  "name": "{{#if_eq scope 'common'}}@istrong/{{/if_eq}}{{ name }}",
+  "name": "{{#if_eq scope 'common'}}@strongsoft/{{/if_eq}}{{ name }}",
   "description": "{{ description }}",
   "version": "{{ version }}",
   "author": {
     "name": "{{ authorFullNameFrom author }}",
     "email": "{{ authorEmailFrom author }}"
   },
-  "keywords": ["vue"],
+  "keywords": [
+    "vue"
+  ],
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
@@ -15,7 +17,10 @@
     "lint": "eslint --ext .js,.vue src",
     "fix": "npm run lint -- --fix"
   },
-  {{#unless_eq githubAccount ""}}
+  {
+    {#unless_eq githubAccount ""
+    }
+  }
   "repository": {
     "type": "git",
     "url": "git+http://git.strongsoft.net:6280/{{ githubAccount }}/{{ name }}.git"
@@ -24,7 +29,10 @@
     "url": "http://git.strongsoft.net:6280/{{ githubAccount }}/{{ name }}/issues"
   },
   "homepage": "http://git.strongsoft.net:6280/{{ githubAccount }}/{{ name }}#readme",
-  {{/unless_eq}}
+  {
+    {/unless_eq
+    }
+  }
   "dependencies": {
     "vue": "^2.5.11"
   },
@@ -50,22 +58,39 @@
     "url-loader": "^0.5.8",
     "json-loader": "^0.5.4",
     "style-loader": "0.13.1",
-    {{#if_eq css "less"}}
+    {
+      {#if_eq css "less"
+      }
+    }
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
-    {{/if_eq}}
-    {{#if_eq css "sass"}}
+    {
+      {/if_eq
+      }
+    }
+    {
+      {#if_eq css "sass"
+      }
+    }
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.0",
-    {{/if_eq}}
-    {{#if_eq css "stylus"}}
+    {
+      {/if_eq
+      }
+    }
+    {
+      {#if_eq css "stylus"
+      }
+    }
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
-    {{/if_eq}}
+    {
+      {/if_eq
+      }
+    }
     "vue-loader": "^13.0.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.4",
-
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "opn": "^5.1.0",
