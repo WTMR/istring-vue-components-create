@@ -4,6 +4,10 @@ var utils = require('./utils')
 var config = require('./devConfig')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
+{{#vux}}
+const vuxLoader = require('vux-loader');
+{{/vux}}
+
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -15,7 +19,7 @@ Object.keys(entry).forEach(function (name) {
   entry[name] = ['./build/dev-client'].concat(entry[name])
 })
 
-module.exports = {
+let webpackConfig = {
   entry: entry,
   output: {
     path: config.assetsRoot,
@@ -87,4 +91,12 @@ module.exports = {
       inject: true
     })
   ]
-}
+};
+
+{{#vux}}
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
+});
+{{else}}
+module.exports = webpackConfig;
+{{/vux}}

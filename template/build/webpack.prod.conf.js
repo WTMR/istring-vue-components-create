@@ -7,7 +7,11 @@ var globalName = '{{ library }}'
 
 var config = require('../package.json');
 
-module.exports = {
+{{#vux}}
+const vuxLoader = require('vux-loader');
+{{/vux}}
+
+let webpackConfig = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -21,6 +25,12 @@ module.exports = {
       commonjs: 'vue',
       commonjs2: 'vue',
       root: 'vue'
+    },
+    vux: {
+      amd: 'vux',
+      commonjs: 'vux',
+      commonjs2: 'vux',
+      root: 'vux'
     }
   },
   module: {
@@ -84,3 +94,11 @@ module.exports = {
     new ExtractTextPlugin(outputFile + '.css')
   ]
 };
+
+{{#vux}}
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
+});
+{{else}}
+module.exports = webpackConfig;
+{{/vux}}

@@ -84,6 +84,10 @@ module.exports = {
       message: 'GitHub账号',
       default: ''
     },
+    vux: {
+      type: 'confirm',
+      message: '是否使用vux作为UI库?'
+    },
     css: {
       type: "list",
       when: "cliType === 'component'",
