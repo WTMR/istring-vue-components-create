@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import {{#if_eq cliType 'component'}} VueComponent {{/if_eq}}{{#if_eq cliType 'plugin'}} VuePlugin {{/if_eq}} from '../src'
+import {{#if_eq cliType 'component'}} VueComponent {{/if_eq}}{{#if_eq cliType 'plugin'}} VuePlugin {{/if_eq}}{{#if_eq cliType 'jsLibary'}} owner {{/if_eq}} from '../src'
 
 Vue.config.productionTip = false
 
