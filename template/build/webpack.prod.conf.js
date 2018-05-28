@@ -7,6 +7,10 @@ var globalName = '{{ library }}'
 
 var config = require('../package.json');
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 {{#vux}}
 const vuxLoader = require('vux-loader');
 {{/vux}}
@@ -18,6 +22,13 @@ let webpackConfig = {
     filename: outputFile + '.js',
     library: globalName,
     libraryTarget: 'umd',
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src')
+    }
   },
   externals: {
     vue: {
