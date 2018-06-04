@@ -68,6 +68,13 @@ let webpackConfig = {
       {
         test: /\.css$/,
         loaders: 'style-loader!css-loader'
+      },{
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,

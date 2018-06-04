@@ -11,10 +11,6 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-{{#vux}}
-const vuxLoader = require('vux-loader');
-{{/vux}}
-
 let webpackConfig = {
   entry: './src/index.js',
   output: {
@@ -64,26 +60,39 @@ let webpackConfig = {
         options: {
           loaders: {
             css: ExtractTextPlugin.extract('css-loader'),
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader'
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
+            scss: ExtractTextPlugin.extract({
+              fallback: "vue-style-loader",
+              use: [
+                "css-loader", // translates CSS into CommonJS
+                "sass-loader" // compiles Sass to CSS
+              ]
+            }),
+            sass: ExtractTextPlugin.extract({
+              fallback: "vue-style-loader",
+              use: [
+                "css-loader", // translates CSS into CommonJS
+                "sass-loader" // compiles Sass to CSS
+              ]
+            })
           }
         },
       },
       {
         test: /\.css$/,
-        // use: ExtractTextPlugin.extract({
-        //   fallback: "style-loader",
-        //   use: 'css-loader'
-        // })
-        loaders: 'style-loader!css-loader'
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: 'css-loader'
+        })
+        // loaders: 'style-loader!css-loader'
+      },{
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            "css-loader", // translates CSS into CommonJS
+            "sass-loader" // compiles Sass to CSS
+          ]
+        })
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -106,10 +115,4 @@ let webpackConfig = {
   ]
 };
 
-{{#vux}}
-module.exports = vuxLoader.merge(webpackConfig, {
-  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
-});
-{{else}}
 module.exports = webpackConfig;
-{{/vux}}
