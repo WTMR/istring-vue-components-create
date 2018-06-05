@@ -108,12 +108,15 @@ module.exports = {
   helpers: {
     authorFullNameFrom: function (author) {
       const startPosition = author.indexOf('<')
-      return author.slice(0, startPosition - 1)
+      if(startPosition === -1){
+        return author.slice(0);
+      }
+      return author.slice(0, startPosition)
     },
     authorEmailFrom: function (author) {
       const startPosition = author.indexOf('<')
       const endPosition = author.indexOf('>')
-      return author.slice(startPosition + 1, endPosition)
+      return author.slice(startPosition + 1, endPosition < -1 ? -1 : endPosition).trim()
     }
   },
 
