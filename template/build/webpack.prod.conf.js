@@ -95,8 +95,16 @@ let webpackConfig = {
         })
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=50000&name=assets/[name].[ext]'
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader?limit=10000&name=assets/[name].[ext]'
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'file-loader?name=assets/[name].[ext]'
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
       }
     ],
   },
